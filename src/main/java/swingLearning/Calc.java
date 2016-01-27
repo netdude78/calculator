@@ -3,6 +3,7 @@ package swingLearning;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -338,5 +341,50 @@ public class Calc extends JFrame {
 		contentPane.add(clearBtn);
 		
 		inputOutputText.requestFocusInWindow();
+		
+		//inputOutputText.addKeyListener(l=);
+		
+		inputOutputText.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+			    if (!Character.isDigit(c) && c != '.') {
+			      e.consume(); // Stop the event from propagating
+			    } 
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				switch (e.getKeyCode()) {
+				case KeyEvent.VK_ENTER:
+					equalsBtn.doClick();
+					break;
+				case KeyEvent.VK_ESCAPE:
+					clearBtn.doClick();
+					break;
+				}
+
+				switch (e.getKeyChar()) {
+					case '*':
+						timesBtn.doClick();
+						break;						
+					case '/':
+						divideBtn.doClick();
+						break;
+					case '-':
+						minusBtn.doClick();
+						break;
+					case '+':
+						plusBtn.doClick();
+						break;
+				}
+			}
+			});
 	}
 }
