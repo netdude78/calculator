@@ -16,6 +16,7 @@
 
 # local directories  #
 ######################
+target/*
 
 # OS generated files #
 ######################
